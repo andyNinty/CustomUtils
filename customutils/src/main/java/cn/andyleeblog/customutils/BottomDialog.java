@@ -163,7 +163,7 @@ public class BottomDialog extends Dialog implements OnClickListener, OnItemClick
 
     private class DialogAdapter extends BaseAdapter {
         private List<String> mStrings;
-        private Viewholder viewholder;
+        private ViewHolder viewholder;
         private LayoutInflater layoutInflater;
 
         public DialogAdapter(List<String> strings) {
@@ -189,12 +189,12 @@ public class BottomDialog extends Dialog implements OnClickListener, OnItemClick
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (null == convertView) {
-                viewholder = new Viewholder();
+                viewholder = new ViewHolder();
                 convertView = layoutInflater.inflate(R.layout.view_dialog_item, null);
                 viewholder.dialogItemButton = (TextView) convertView.findViewById(R.id.dialog_item_bt);
                 convertView.setTag(viewholder);
             } else {
-                viewholder = (Viewholder) convertView.getTag();
+                viewholder = (ViewHolder) convertView.getTag();
             }
             viewholder.dialogItemButton.setText(mStrings.get(position));
             if (!mUseCustomColor) {
@@ -219,7 +219,7 @@ public class BottomDialog extends Dialog implements OnClickListener, OnItemClick
 
     }
 
-    public static class Viewholder {
+    public static class ViewHolder {
         TextView dialogItemButton;
     }
 
