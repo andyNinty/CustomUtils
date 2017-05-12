@@ -43,15 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 new MyDialog.Builder(MainActivity.this)
                         .setTitle("提醒您")
                         .setMessage("要退出吗")
-                        .setNoButton("no", new MyDialog.OnNoClickListener() {
+                        .setNegativeButton("no", new MyDialog.OnNegativeClickListener() {
                             @Override
-                            public void onNoClick() {
+                            public void onClick() {
                                 Toast.makeText(MainActivity.this, "ys", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setYesButton("yes", new MyDialog.OnYesClickListener() {
+                        .setPositiveButton("yes", new MyDialog.OnPositiveClickListener() {
                             @Override
-                            public void onYesClick() {
+                            public void onClick() {
                                 Toast.makeText(MainActivity.this, "否", Toast.LENGTH_SHORT).show();
                             }
                         }).create().show();

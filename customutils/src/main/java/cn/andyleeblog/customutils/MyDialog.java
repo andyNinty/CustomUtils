@@ -23,8 +23,8 @@ public class MyDialog extends Dialog {
     private String mYesStr;
     private String mNoStr;
 
-    private OnYesClickListener mYesListener;
-    private OnNoClickListener mNoListener;
+    private OnPositiveClickListener mYesListener;
+    private OnNegativeClickListener mNoListener;
 
     private MyDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
@@ -69,7 +69,7 @@ public class MyDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 if (mYesListener != null) {
-                    mYesListener.onYesClick();
+                    mYesListener.onClick();
                     dismiss();
                 }
             }
@@ -79,7 +79,7 @@ public class MyDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 if (mNoListener != null) {
-                    mNoListener.onNoClick();
+                    mNoListener.onClick();
                     dismiss();
                 }
             }
@@ -88,12 +88,12 @@ public class MyDialog extends Dialog {
 
     }
 
-    public interface OnYesClickListener {
-        void onYesClick();
+    public interface OnPositiveClickListener {
+        void onClick();
     }
 
-    public interface OnNoClickListener {
-        void onNoClick();
+    public interface OnNegativeClickListener {
+        void onClick();
     }
 
 
@@ -108,23 +108,23 @@ public class MyDialog extends Dialog {
             dialog = new MyDialog(context, themeResId);
         }
 
-        public Builder setTitle(String title) {
+        public Builder setTitle(@NonNull String title) {
             dialog.mTitle = title;
             return this;
         }
 
-        public Builder setMessage(String message) {
+        public Builder setMessage(@NonNull String message) {
             dialog.mMessage = message;
             return this;
         }
 
-        public Builder setYesButton(String yesStr, OnYesClickListener listener) {
+        public Builder setPositiveButton(@NonNull String yesStr, OnPositiveClickListener listener) {
             dialog.mYesStr = yesStr;
             dialog.mYesListener = listener;
             return this;
         }
 
-        public Builder setNoButton(String noStr, OnNoClickListener listener) {
+        public Builder setNegativeButton(@NonNull String noStr, OnNegativeClickListener listener) {
             dialog.mNoStr = noStr;
             dialog.mNoListener = listener;
             return this;
@@ -136,6 +136,12 @@ public class MyDialog extends Dialog {
         }
 
         public MyDialog create() {
+            return dialog;
+        }
+
+        public MyDialog show() {
+            MyDialog dialog = create();
+            dialog.show();
             return dialog;
         }
 
