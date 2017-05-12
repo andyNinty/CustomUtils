@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.andyleeblog.customutils.BottomDialog;
+import cn.andyleeblog.customutils.MyDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +34,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, names);
                 dialog.show();
+            }
+        });
+
+        findViewById(R.id.btn_dialog).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new MyDialog.Builder(MainActivity.this)
+                        .setTitle("提醒您")
+                        .setMessage("要退出吗")
+                        .setNoButton("no", new MyDialog.OnNoClickListener() {
+                            @Override
+                            public void onNoClick() {
+                                Toast.makeText(MainActivity.this, "ys", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setYesButton("yes", new MyDialog.OnYesClickListener() {
+                            @Override
+                            public void onYesClick() {
+                                Toast.makeText(MainActivity.this, "否", Toast.LENGTH_SHORT).show();
+                            }
+                        }).create().show();
             }
         });
     }

@@ -22,7 +22,6 @@ public class MyDialog extends Dialog {
     private String mMessage;
     private String mYesStr;
     private String mNoStr;
-    private boolean mIsCancelable;
 
     private OnYesClickListener mYesListener;
     private OnNoClickListener mNoListener;
@@ -89,16 +88,6 @@ public class MyDialog extends Dialog {
 
     }
 
-    private void setYesClickListener(@NonNull String yesStr, OnYesClickListener listener) {
-        mYesStr = yesStr;
-        mYesListener = listener;
-    }
-
-    private void setNoClickListener(@NonNull String noStr, OnNoClickListener listener) {
-        mNoStr = noStr;
-        mNoListener = listener;
-    }
-
     public interface OnYesClickListener {
         void onYesClick();
     }
@@ -107,13 +96,6 @@ public class MyDialog extends Dialog {
         void onNoClick();
     }
 
-    private void setDialogTitle(String title) {
-        mTitle = title;
-    }
-
-    private void setDialogMessage(String message) {
-        mMessage = message;
-    }
 
     public static class Builder {
         private MyDialog dialog;
@@ -149,16 +131,11 @@ public class MyDialog extends Dialog {
         }
 
         public Builder setCancelable(boolean flag) {
-            dialog.mIsCancelable = flag;
+            dialog.setCancelable(flag);
             return this;
         }
 
         public MyDialog create() {
-            dialog.setDialogTitle(dialog.mTitle);
-            dialog.setDialogMessage(dialog.mMessage);
-            dialog.setYesClickListener(dialog.mYesStr, dialog.mYesListener);
-            dialog.setNoClickListener(dialog.mNoStr, dialog.mNoListener);
-            dialog.setCancelable(dialog.mIsCancelable);
             return dialog;
         }
 
